@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1. 0">
+   <title>Avaliação de Produto</title>
+   <style>
+       body {
+           font-family: Arial, sans-serif;
+           margin: 0;
+           padding: 0;
+       }
+
+
+       .avaliacao {
+           background-color: #f7f7f7;
+           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+           padding: 20px;
+       }
+
+
+       .avaliacao h2 {
+           margin-top: 0;
+       }
+
+
+       .avaliacao p {
+           font-size: 18px;
+           font-weight: bold;
+           color: #333;
+       }
+
+
+       .estrelas {
+           font-size: 24px;
+           color: #ffd700;
+       }
+
+
+       .estrelas span {
+           cursor: pointer;
+       }
+
+
+       .comentario {
+           width: 100%;
+           height: 100px;
+           padding: 10px;
+           font-size: 18px;
+           border: 1px solid #ccc;
+       }
+
+
+       .enviar {
+           background-color: #4CAF50;
+           color: #fff;
+           padding: 10px 20px;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+       }
+
+
+       .enviar:hover {
+           background-color: #3e8e41;
+       }
+   </style>
+</head>
+<body>
+   <main>
+       <section class="avaliacao">
+           <h2>Avaliação de Produto</h2>
+           <p>Por favor, avalie o produto:</p>
+           <div class="estrelas">
+               <span>&#9733;</span>
+               <span>&#9733;</span>
+               <span>&#9733;</span>
+               <span>&#9733;</span>
+               <span>&#9733;</span>
+           </div>
+           <textarea class="comentario" placeholder="Escreva seu comentário aqui..."></textarea>
+           <button type="submit"><a href="index.html"> Avaliar</button>
+       </section>
+   </main>
+   <script>
+       const estrelas = document.querySelectorAll('.estrelas span');
+       const comentario = document.querySelector('.comentario');
+       const enviar = document.querySelector('.enviar');
+
+
+       let avaliacao = 0;
+
+
+       estrelas.forEach((estrela, index) => {
+           estrela.addEventListener('click', () => {
+               avaliacao = index + 1;
+               estrelas.forEach((estrela, i) => {
+                   if (i <= index) {
+                       estrela.style.color = '#ffd700';
+                   } else {
+                       estrela.style.color = '#ccc';
+                   }
+               });
+           });
+       });
+
+
+       enviar.addEventListener('click', () => {
+           if (avaliacao > 0 && comentario.value.trim() !== '') {
+               // Enviar avaliação para o servidor
+               console.log(`Avaliação: ${avaliacao} estrelas`);
+               console.log(`Comentário: ${comentario.value}`);
+           } else {
+               alert('Por favor, selecione uma avaliação e escreva um comentário.');
+           }
+       });
+   </script>
+</body>
+</html>
